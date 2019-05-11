@@ -1,9 +1,11 @@
 import java.util.*; 
+
+
 class Person{
 		String name; 
 		int age; 
-		Scanner in = new Scanner(System.in);
 		public void getData(){ 
+			Scanner in = new Scanner(System.in);
 			System.out.print("Enter Name : "); 
 			name = in.next(); 
 			System.out.print("Enter Age : "); 
@@ -19,6 +21,7 @@ class Student extends Person{
 	int sid; 
 	String level; 
 	public void getData(){
+		Scanner in = new Scanner(System.in);
 		super.getData();
 		System.out.print("Enter Student ID : "); 
 		sid = in.nextInt(); 
@@ -27,14 +30,16 @@ class Student extends Person{
 	}
 	public void display(){
 		super.display(); 
-		System.out.println("Student ID = "+sid);
+		System.out.println("\nStudent ID = "+sid);
 		System.out.println("Level    = "+level); 
 	}
 }
 
-class Result extends Person{
+
+class Result extends Student{
 	int sub1, sub2, sub3, total; 
 	public void getData(){
+		Scanner in = new Scanner(System.in);
 		super.getData(); 
 		System.out.print("Marks in Subject 1: ");
 		sub1 = in.nextInt(); 
@@ -46,16 +51,23 @@ class Result extends Person{
 	}
 	public void display(){
 		super.display();
-		System.out.println("\nSubject 1 = "+sub1); 
+		System.out.println("Subject 1 = "+sub1); 
 		System.out.println("Subject 2 = "+sub2); 
 		System.out.println("Subject 3 = "+sub3); 
 		System.out.println("Total = "+total); 
 	}
 	public static void main(String args[]){
-		Result obj = new Result(); 
+		Result r[] = new Result[3];
 		System.out.println("\n******INPUT*******"); 
-		obj.getData();	
-		System.out.println("\n\n*********Result*********"); 
-		obj.display();
+		for(int i=0; i<3; i++){
+			System.out.println("---------------------- Student "+(i+1)); 
+			r[i]=new Result(); 
+			r[i].getData(); 
+		}
+		System.out.println("------------------Result-----------------"); 
+		for(int i=0; i<3; i++){
+			r[i].display(); 
+			System.out.println("----------------------------------------------------"); 
+		}
 	}	
 }
